@@ -1,27 +1,22 @@
-# Ng14SsfcuCapMapSidemenu
+# googleMaps: Touch position bugged on Android 13
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.10.
+This project is a simple reproduction of the issue reported at [https://github.com/ionic-team/capacitor-plugins/issues/1357](https://github.com/ionic-team/capacitor-plugins/issues/1357). It appears that touch events are not registered in the correct area of the screen in the example. This example is based on the Ionic [sidemenu starter](https://github.com/ionic-team/starters/tree/main/angular/official/sidemenu) project, with modiciations to add the [Capacitor Maps](https://capacitorjs.com/docs/apis/google-maps) plugin, as well as a lazy-loaded "map" page, which set as the default route. Per the issue reported, this project was created with as an Angular 14 starter. Latest Ionic 6 was added via `ng add @ionic/angular`, and the app.component was modified to be similar to the sidemenu starter. The `folder` folder pulled from the starter
 
-## Development server
+## Preqrequisite
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+A valid [Google Maps API Key](https://developers.google.com/maps/documentation/javascript/get-api-key) must be specified. You can do a find/replace for all references to `YOUR-GOOGLE-MAP-API-KEY`.
 
-## Code scaffolding
+## Steps to Reproduce
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Add your Google Maps API Key (replace references to `YOUR-GOOGLE-MAP-API-KEY`)
+2. `npm run android`. This will run  `ng build`, `npx cap sync`, then `npx cap run android`
+3. The app should launch with the 'Map' page as the default route
+4. Tap the sidemenu button in the upper left
+5. From the list, tap 'Trash'. You will most likely see the 'Spam' route triggered instead
 
-## Build
+## Other Notes
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- The bottom option in the list, 'Spam' seems to consistently work as expected.
+- But the items above it seem to trigger the event for the item below where you tap.
+- It seems if you tap toward the top half of the list item, there's a higher success rate of triggering the intended item.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
