@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+// Make views transparent for Capacitor Map plugin
+// See https://capacitorjs.com/docs/apis/google-maps#usage
+ion-content {
+  background: transparent;
+  --background: transparent;
+}

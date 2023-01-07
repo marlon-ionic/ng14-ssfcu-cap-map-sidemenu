@@ -13,4 +13,7 @@
       <ion-title size="large">Map</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div class="map-container" [class.map-loading]="loadingDisplay" [class.ios-bg]="ios">
+    <capacitor-google-map #map></capacitor-google-map>
+  </div>
 </ion-content>
