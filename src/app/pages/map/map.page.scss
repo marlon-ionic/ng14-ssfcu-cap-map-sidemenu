@@ -3,4 +3,10 @@
   flex-flow: column;
 }
 
-capacitor-google-map { display: inline-block; width: 100vw; height: 101vh; background: transparent; }
+// Make views transparent for Capacitor Map plugin
+// See https://capacitorjs.com/docs/apis/google-maps#usage
+ion-content {
+  --background: transparent;
+}
+
+capacitor-google-map { display: inline-block; width: 100%; height: 101vh; background: transparent; }
