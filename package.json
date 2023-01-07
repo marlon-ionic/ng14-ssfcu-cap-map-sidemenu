@@ -4,7 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && npx cap sync",
+    "android": "npm run build && npx cap run android",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
